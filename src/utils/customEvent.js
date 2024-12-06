@@ -5704,7 +5704,7 @@ function refreshData(context, funcName, EventService, _commonStore) {
         setStyle(`sortEle_${dynamicViewId}`, 'display', 'block')
         setStyle(`sortEle_${formTableViewId}`, 'display', 'none')
         opIds.forEach(v =>{
-            setStyle(v, 'display', 'none')
+            setStyle(v, 'display', 'block')
         })
     }
 }
@@ -5760,6 +5760,7 @@ function initPage(context, funcName, EventService, _commonStore) {
         if(!_commonStore.customerEventActiveBtn['benbu']) {
             _commonStore.setCustomerEventActiveBtn({type: 'benbu', value: "all"})
         }
+        console.log('activeKey', activeKey)
         refreshData(context, activeKey, EventService, _commonStore)
     }, 100)
 
