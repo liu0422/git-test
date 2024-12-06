@@ -1,4 +1,11 @@
 import {navigateTo} from "@/utils/navigateUtil";
+const btnValueMap = {
+    "职工": "职工",
+    "外包": "外包",
+    "试用": "试用期",
+    "实习": "实习生",
+    "其他": "其他"
+}
 
 const btnList = [
     {
@@ -5621,7 +5628,7 @@ export function customerFunc(context, funcName, EventService, _commonStore) {
         opIds.forEach(v =>{
             setStyle(v, 'display', 'block')
         })
-        _commonStore.setCustomerEventActiveBtn(funcName)
+        _commonStore.setCustomerEventActiveBtn({type: 'benbu', value: funcName})
     } else if (headEvent.includes(funcName)) {
         _commonStore.setCustomerEventActive(funcName)
         refreshHeadData(context, funcName, EventService, _commonStore)
@@ -5718,7 +5725,7 @@ function refreshHeadData(context, funcName, EventService, _commonStore) {
                 "field": "select_1713337276000_66931",
                 "method": "equal",
                 "type": "select",
-                "value": btn.value
+                "value": btnValueMap[btn.value]
             })
         }
         EventService.proxy.bus.emit(refreshId, {
@@ -5749,8 +5756,11 @@ function initPage(context, funcName, EventService, _commonStore) {
             }
         })
         setColor('1728897612000_64748', globalColor, columnList)
-        _commonStore.setCustomerEventActiveBtn('all')
-        refreshData(context, 'all', EventService, _commonStore)
+        let activeKey = _commonStore.customerEventActiveBtn['benbu'] || "all"
+        if(!_commonStore.customerEventActiveBtn['benbu']) {
+            _commonStore.setCustomerEventActiveBtn({type: 'benbu', value: "all"})
+        }
+        refreshData(context, activeKey, EventService, _commonStore)
     }, 100)
 
 }
@@ -10465,7 +10475,7 @@ function xygsEvent(context, funcName, EventService, _commonStore) {
         opIds.forEach(v =>{
             setStyle(v, 'display', 'block')
         })
-        _commonStore.setCustomerEventActiveBtn(funcName)
+        _commonStore.setCustomerEventActiveBtn({type: 'xygs', value: funcName})
     } else if (xygs.headEvent.includes(funcName)) {
         _commonStore.setCustomerEventActive(funcName)
         xygsRefreshHeadData(context, funcName, EventService, _commonStore)
@@ -10545,7 +10555,7 @@ function xygsRefreshHeadData(context, funcName, EventService, _commonStore) {
                 "field": "select_1713337276000_66931",
                 "method": "equal",
                 "type": "select",
-                "value": btn.value
+                "value": btnValueMap[btn.value]
             })
         }
         EventService.proxy.bus.emit(xygs.refreshId, {
@@ -10576,8 +10586,11 @@ function xygsInitPage(context, funcName, EventService, _commonStore) {
             }
         })
         setColor('1728897612000_64748', globalColor, xygs.columnList)
-        _commonStore.setCustomerEventActiveBtn('all_xygs')
-        xygsRefreshData(context, 'all_xygs', EventService, _commonStore)
+        let activeKey = _commonStore.customerEventActiveBtn['xygs'] || "all_xygs"
+        if(!_commonStore.customerEventActiveBtn['xygs']) {
+            _commonStore.setCustomerEventActiveBtn({type: 'xygs', value: "all_xygs"})
+        }
+        xygsRefreshData(context, activeKey, EventService, _commonStore)
     }, 100)
 
 }
@@ -15781,7 +15794,7 @@ function ghEvent(context, funcName, EventService, _commonStore) {
         opIds.forEach(v =>{
             setStyle(v, 'display', 'block')
         })
-        _commonStore.setCustomerEventActiveBtn(funcName)
+        _commonStore.setCustomerEventActiveBtn({type: "gh",value: funcName})
     } else if (gh.headEvent.includes(funcName)) {
         _commonStore.setCustomerEventActive(funcName)
         ghRefreshHeadData(context, funcName, EventService, _commonStore)
@@ -15862,7 +15875,7 @@ function ghRefreshHeadData(context, funcName, EventService, _commonStore) {
                 "field": "select_1713337276000_66931",
                 "method": "equal",
                 "type": "select",
-                "value": btn.value
+                "value": btnValueMap[btn.value]
             })
         }
         EventService.proxy.bus.emit(gh.refreshId, {
@@ -15893,8 +15906,11 @@ function ghInitPage(context, funcName, EventService, _commonStore) {
             }
         })
         setColor('1728897612000_64748', globalColor, gh.columnList)
-        _commonStore.setCustomerEventActiveBtn('all_gh')
-        ghRefreshData(context, 'all_gh', EventService, _commonStore)
+        let activeKey = _commonStore.customerEventActiveBtn['gh'] || "all_gh"
+        if(!_commonStore.customerEventActiveBtn['gh']) {
+            _commonStore.setCustomerEventActiveBtn({type: 'gh', value: "all_gh"})
+        }
+        ghRefreshData(context, activeKey, EventService, _commonStore)
     }, 100)
 
 }
