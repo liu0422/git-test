@@ -50,7 +50,7 @@ nav a:first-of-type {
   }
 
   .logo {
-    margin: 0 2rem 0 0;
+    margin: 0 1rem 0 0;
   }
 
   header .wrapper {
